@@ -5,20 +5,20 @@ namespace App\Component;
 class HeadComponent
 {
 
-    private array $meta = [];
+    private array $metaData = [];
 
     public function __construct(array $metaArray = [])
     {
-        foreach ($metaArray as $key => $value) {
-            if ($key instanceof MetaType) {
-                $this->meta[$key->name] = $value;
+        foreach ($metaArray as $meta => $value) {
+            if ($meta instanceof MetaType) {
+                $this->metaData[$meta->name] = $value;
             }
         }
     }
 
-    public function get(MetaType $name): string
+    public function get(MetaType $meta): string
     {
-        return $this->meta[$name->name] ?: $name->value;
+        return $this->metaData[$meta->name] ?: $meta->value;
 
     }
 
